@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>KibungoConnect | Community Solutions Hub - Ngoma District</title>
+    <!-- Bootstrap 5 CSS + Icons + Custom Font -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts for clean readability -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background: #f4f7fb;
+            scroll-behavior: smooth;
+        }
+        /* navbar brand styling */
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #0b3b2f 0%, #1c6e4a 100%);
+            color: white;
+            border-radius: 0 0 2rem 2rem;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -12px rgba(0,0,0,0.15);
+        }
+        .form-card, .feed-card {
+            border: none;
+            border-radius: 1.25rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        footer {
+            background-color: #0a2e24;
+            color: #cfdfd9;
+            border-radius: 1.5rem 1.5rem 0 0;
+            margin-top: 3rem;
+        }
+        .btn-primary-custom {
+            background-color: #1c6e4a;
+            border: none;
+        }
+        .btn-primary-custom:hover {
+            background-color: #0f5539;
+        }
+        .social-post {
+            background: #fff;
+            border-left: 5px solid #1c6e4a;
+            transition: all 0.2s;
+        }
+        .fb-badge, .twitter-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+        }
+        .fb-badge { background: #e7f3ff; color: #1877f2; }
+        .twitter-badge { background: #e8f4fd; color: #1da1f2; }
+        .invalid-feedback {
+            font-size: 0.8rem;
+        }
+        .map-placeholder {
+            background: #e9ecef;
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <i class="bi bi-tree-fill text-success me-1"></i> KibungoConnect
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#reportForm">Report Issue</a></li>
+                <li class="nav-item"><a class="nav-link" href="#socialFeeds">Community Feeds</a></li>
+                <li class="nav-item"><a class="nav-link" href="#scalability">Scaling</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section: local real problem - waste management & infrastructure in Kibungo Sector -->
+<section id="home" class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <span class="badge bg-light text-dark mb-2"><i class="bi bi-geo-alt-fill"></i> Ngoma District, Kibungo Sector</span>
+                <h1 class="display-5 fw-bold">Empowering Kibungo Community<br> <span class="border-bottom border-3 border-warning">Real issues, local solutions</span></h1>
+                <p class="lead mt-3">Report drainage blockages, waste collection needs, or damaged community infrastructure. Your voice shapes a cleaner, safer Kibungo. Data-driven & scalable across all sectors of Ngoma District.</p>
+                <a href="#reportForm" class="btn btn-light btn-lg px-4 mt-2 fw-semibold"><i class="bi bi-pencil-square"></i> Submit a community report</a>
+                <a href="#socialFeeds" class="btn btn-outline-light btn-lg px-4 mt-2 ms-2"><i class="bi bi-twitter-x"></i> Live updates</a>
+            </div>
+            <div class="col-lg-4 d-none d-lg-block text-center">
+                <i class="bi bi-people-fill" style="font-size: 6rem; opacity: 0.8;"></i>
+                <p class="small mt-2">Collaborative governance</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <!-- Two column layout: Form + optional info -->
+    <div class="row g-4">
+        <!-- LEFT COL: DATA COLLECTION FORM (Bootstrap + Validation) -->
+        <div class="col-lg-6">
+            <div class="card form-card p-3 p-lg-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <i class="bi bi-clipboard-data fs-2 text-success"></i>
+                        <h3 class="card-title mb-0">Report a local issue</h3>
+                    </div>
+                    <p class="text-muted">Fill the form to notify Kibungo sector office about real problems — flooding, waste, road damage. All submissions are validated to ensure data quality.</p>
+                    <hr>
+                    <form id="communityReportForm" novalidate>
+                        <!-- Full name -->
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label fw-semibold"><i class="bi bi-person"></i> Full name *</label>
+                            <input type="text" class="form-control" id="fullName" placeholder="e.g., Moise Ndekezi" required>
+                            <div class="invalid-feedback">Please provide your full name (at least 3 letters).</div>
+                        </div>
+                        <!-- Phone / contact -->
+                        <div class="mb-3">
+                            <label for="phone" class="form-label fw-semibold"><i class="bi bi-telephone"></i> Phone number *</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="0781097368" required>
+                            <div class="invalid-feedback">Enter a valid Rwandan phone (e.g., 0788 123 456 or +250...).</div>
+                        </div>
+                        <!-- Sector / Cell (localized) -->
+                        <div class="mb-3">
+                            <label for="locationSector" class="form-label fw-semibold"><i class="bi bi-geo"></i> Location (Sector/Cell) *</label>
+                            <select class="form-select" id="locationSector" required>
+                                <option value="" disabled selected>-- Select your sector --</option>
+                                <option value="Kibungo">Kibungo Sector (Central)</option>
+                                <option value="Rukira">Rukira Sector</option>
+                                <option value="Mutenderi">Mutenderi Sector</option>
+                                <option value="Zaza">Zaza Sector</option>
+                                <option value="Kazabe">Kazabe Sector</option>
+                                <option value="Other Ngoma">Other Ngoma District</option>
+                            </select>
+                            <div class="invalid-feedback">Please select your sector within Ngoma District.</div>
+                        </div>
+                        <!-- Issue category -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold"><i class="bi bi-exclamation-triangle"></i> Issue category *</label>
+                            <div class="d-flex flex-wrap gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="issueCategory" value="Waste management" id="wasteRadio" required>
+                                    <label class="form-check-label" for="wasteRadio">Waste / Litter</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="issueCategory" value="Drainage / Flooding" id="drainageRadio">
+                                    <label class="form-check-label" for="drainageRadio">Drainage / Flooding</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="issueCategory" value="Road damage" id="roadRadio">
+                                    <label class="form-check-label" for="roadRadio">Road / Infrastructure</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="issueCategory" value="Public health" id="healthRadio">
+                                    <label class="form-check-label" for="healthRadio">Public health / Sanitation</label>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback">Please select an issue category.</div>
+                        </div>
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label for="description" class="form-label fw-semibold">Detailed description *</label>
+                            <textarea class="form-control" id="description" rows="3" placeholder="Describe the exact problem, location landmarks, and urgency..." required></textarea>
+                            <div class="invalid-feedback">Please provide a detailed description (min 10 characters).</div>
+                        </div>
+                        <!-- Simulated image upload (mimic) -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold"><i class="bi bi-image"></i> Supporting image (optional)</label>
+                            <input type="file" class="form-control" id="supportImage" accept="image/*">
+                            <div class="form-text">Upload a reference image (mimic feature, not stored server-side).</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom btn-lg w-100"><i class="bi bi-send-check"></i> Submit report</button>
+                        <div id="formSuccessMessage" class="alert alert-success mt-3 d-none" role="alert">
+                            ✅ Thank you! Your report has been recorded. Kibungo sector authorities will review within 48h.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COL: Community stats + map mimic & scalability preview -->
+        <div class="col-lg-6">
+            <div class="card form-card p-3 p-lg-4 mb-4">
+                <div class="card-body">
+                    <h4><i class="bi bi-bar-chart-steps"></i> Kibungo Impact Dashboard</h4>
+                    <p>Realistic simulated data based on recent reports in Ngoma district.</p>
+                    <div class="row text-center mt-3">
+                        <div class="col-4">
+                            <div class="bg-light rounded p-2">
+                                <i class="bi bi-trash3 fs-3 text-danger"></i>
+                                <h3 class="mb-0 mt-1" id="wasteCount">147</h3>
+                                <small>Waste reports</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-light rounded p-2">
+                                <i class="bi bi-water fs-3 text-primary"></i>
+                                <h3 class="mb-0 mt-1" id="drainCount">89</h3>
+                                <small>Drainage issues</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-light rounded p-2">
+                                <i class="bi bi-road fs-3 text-warning"></i>
+                                <h3 class="mb-0 mt-1" id="roadCount">52</h3>
+                                <small>Road damages</small>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="map-placeholder mt-2">
+                        <i class="bi bi-map fs-2 text-secondary"></i>
+                        <p class="mb-0"><strong>📍 Kibungo Sector Map Preview</strong><br> Active zones: Rwimbogo, Nyakibande, Kibungo Town</p>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-success" style="width: 68%">68% coverage</div>
+                        </div>
+                        <small class="text-muted">Scalable GIS layer for all sectors</small>
+                    </div>
+                </div>
+            </div>
+            <!-- Real-world cause: collaboration -->
+            <div class="alert alert-info d-flex align-items-center" role="alert">
+                <i class="bi bi-megaphone-fill fs-4 me-2"></i>
+                <div><strong>Partner with Kibungo sector office</strong> — Your reports help allocate resources efficiently. This platform is designed to scale across all 12 sectors of Ngoma District.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOCIAL MEDIA FEEDS SECTION (Facebook + Twitter API simulation / embedded timeline mimic) -->
+    <div id="socialFeeds" class="mt-5 pt-2">
+        <h2 class="border-start border-5 border-success ps-3 mb-4"><i class="bi bi-share"></i> Community & Social Updates</h2>
+       
+        <div class="row g-4">
+            <!-- Facebook simulated feed (using mimic data from official page) -->
+            <div class="col-md-6">
+                <div class="card feed-card h-100">
+                    <div class="card-header bg-white border-0 pt-3 pb-0">
+                        <i class="bi bi-facebook text-primary fs-4"></i> <strong>Kibungo Sector Official</strong> <span class="fb-badge ms-2">Facebook Feed</span>
+                    </div>
+                    <div class="card-body" id="facebookFeedContainer">
+                        <!-- dynamic javascript generated fb posts -->
+                        <div class="text-center py-4"><div class="spinner-border text-primary" role="status"></div> Loading community updates...</div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-muted small">
+                        <i class="bi bi-info-circle"></i> Simulated via Facebook Page API example (posts based on real sector announcements)
+                    </div>
+                </div>
+            </div>
+            <!-- Twitter simulated feed -->
+            <div class="col-md-6">
+                <div class="card feed-card h-100">
+                    <div class="card-header bg-white border-0 pt-3 pb-0">
+                        <i class="bi bi-twitter-x text-info fs-4"></i> <strong>@NgomaDistrict</strong> <span class="twitter-badge ms-2">Twitter/X Feed</span>
+                    </div>
+                    <div class="card-body" id="twitterFeedContainer">
+                        <div class="text-center py-4"><div class="spinner-border text-info" role="status"></div> Loading tweets ...</div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-muted small">
+                        Simulated Twitter API v2 – official district announcements.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3 text-end">
+            <button class="btn btn-sm btn-outline-secondary" id="refreshFeedsBtn"><i class="bi bi-arrow-repeat"></i> Refresh feeds (simulated API)</button>
+        </div>
+    </div>
+
+    <!-- SCALABILITY SECTION (potential for other sectors) -->
+    <div id="scalability" class="mt-5 pt-3">
+        <div class="card bg-white border-0 shadow-sm p-4">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h3><i class="bi bi-diagram-3"></i> Scalable architecture for all districts</h3>
+                    <p>This KibungoConnect system is built with modular design: dynamic form fields, configurable location selector, and social feed components that can be replicated for <strong>Rukira, Mutenderi, Zaza, Kazabe</strong> and all 12 sectors of Ngoma District.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Dynamic sector database ready</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Dashboard counters increase with each report submission (client-side demo)</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Social media API simulation layer can be swapped with OAuth tokens</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Fully responsive + Bootstrap 5 components</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="bi bi-arrow-repeat" style="font-size: 4rem; color: #1c6e4a;"></i>
+                    <p class="fw-bold mt-2">Ready for expansion</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="container-fluid py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <i class="bi bi-tree-fill"></i> <strong>KibungoConnect</strong> — solving real community challenges in Ngoma District, Rwanda.
+                <br><small>©2026  Rwanda Polytechnic | Ngoma College</small>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <i class="bi bi-github"></i> GitHub: <a href="#" class="text-white-50" id="fakeGithubLink">github.com/kibungo-community-solution</a>
+                <br><small>Full source + report documentation submitted</small>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // -------------------------------
+    // FORM VALIDATION (Bootstrap custom)
+    // -------------------------------
+    (function() {
+        const form = document.getElementById('communityReportForm');
+        const successMsg = document.getElementById('formSuccessMessage');
+        
+        // Helper: validate phone (rwandan format simple)
+        function validatePhone(phone) {
+            const phoneRegex = /^(\+250|0)?[7]\d{8}$/;
+            return phoneRegex.test(phone);
+        }
+
+        // realtime & submission
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            let isValid = true;
+            const fullName = document.getElementById('fullName');
+            const phone = document.getElementById('phone');
+            const locationSector = document.getElementById('locationSector');
+            const description = document.getElementById('description');
+            const radioGroup = document.querySelectorAll('input[name="issueCategory"]');
+            let radioSelected = false;
+            radioGroup.forEach(radio => { if(radio.checked) radioSelected = true; });
+            
+            // Custom validations
+            if(!fullName.value.trim() || fullName.value.trim().length < 3) {
+                fullName.classList.add('is-invalid');
+                isValid = false;
+            } else fullName.classList.remove('is-invalid');
+            
+            if(!validatePhone(phone.value.trim())) {
+                phone.classList.add('is-invalid');
+                isValid = false;
+            } else phone.classList.remove('is-invalid');
+            
+            if(!locationSector.value) {
+                locationSector.classList.add('is-invalid');
+                isValid = false;
+            } else locationSector.classList.remove('is-invalid');
+            
+            if(!description.value.trim() || description.value.trim().length < 10) {
+                description.classList.add('is-invalid');
+                isValid = false;
+            } else description.classList.remove('is-invalid');
+            
+            if(!radioSelected) {
+                document.querySelectorAll('input[name="issueCategory"]').forEach(r => {
+                    r.setCustomValidity(' ');
+                });
+                document.querySelector('.invalid-feedback').style.display = 'block';
+                isValid = false;
+            } else {
+                document.querySelectorAll('input[name="issueCategory"]').forEach(r => r.setCustomValidity(''));
+            }
+            
+            if(isValid) {
+                // Update dashboard counters (simulate data integration)
+                const selectedCategory = document.querySelector('input[name="issueCategory"]:checked').value;
+                if(selectedCategory === 'Waste management') {
+                    let wasteEl = document.getElementById('wasteCount');
+                    let current = parseInt(wasteEl.innerText);
+                    wasteEl.innerText = current + 1;
+                } else if(selectedCategory === 'Drainage / Flooding') {
+                    let drainEl = document.getElementById('drainCount');
+                    drainEl.innerText = parseInt(drainEl.innerText) + 1;
+                } else if(selectedCategory === 'Road damage') {
+                    let roadEl = document.getElementById('roadCount');
+                    roadEl.innerText = parseInt(roadEl.innerText) + 1;
+                } else {
+                    let wasteEl = document.getElementById('wasteCount');
+                    wasteEl.innerText = parseInt(wasteEl.innerText) + 1; // general increase
+                }
+                
+                // show success message and reset form
+                successMsg.classList.remove('d-none');
+                form.reset();
+                // Remove is-invalid class from all fields after reset
+                document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+                setTimeout(() => {
+                    successMsg.classList.add('d-none');
+                }, 4000);
+                // Optionally store in localStorage to simulate db
+                let reports = JSON.parse(localStorage.getItem('kibungoReports') || '[]');
+                reports.push({ name: fullName.value.trim(), phone: phone.value, sector: locationSector.value, date: new Date() });
+                localStorage.setItem('kibungoReports', JSON.stringify(reports));
+            } else {
+                // bootstrap form validation class
+                form.classList.add('was-validated');
+            }
+            form.classList.add('was-validated');
+        });
+        
+        // additional phone input validation style
+        document.getElementById('phone').addEventListener('input', function(e) {
+            if(validatePhone(e.target.value)) e.target.classList.remove('is-invalid');
+        });
+    })();
+    
+    // ----------------------------------------------
+    // SOCIAL MEDIA FEED SIMULATION (Facebook & Twitter API simulation)
+    // Realistic data mimicking official pages from Ngoma district & Kibungo sector
+    // ----------------------------------------------
+    const fbPosts = [
+        { id: 1, text: "🌿 Community clean-up campaign in Kibungo town this Saturday! Join us at 8am near the market. #KibungoIsGreen", date: "2 hours ago", likes: 45, comments: 12 },
+        { id: 2, text: "🚧 Ongoing rehabilitation of drainage channels in Rwimbogo cell. Expect minor traffic changes. Thank you for cooperation.", date: "Yesterday", likes: 28, comments: 3 },
+        { id: 3, text: "📢 Public meeting: Infrastructure development plan for Ngoma District. Venue: Kibungo Sector Office, 3rd April 2026.", date: "3 days ago", likes: 62, comments: 8 },
+        { id: 4, text: "💧 Water supply update: New borehole installed in Nyakibande cell, thanks to district partnership.", date: "1 week ago", likes: 103, comments: 14 }
+    ];
+    
+    const twitterPosts = [
+        { id: 101, user: "@NgomaDistrict", text: "Digital reporting system now live for Kibungo residents! Report waste issues via this platform. #SmartNgoma", date: "5h", retweets: 34, likes: 87 },
+        { id: 102, user: "@NgomaDistrict", text: "Flood prevention: District allocated 50M RWF for stormwater management in low-lying sectors of Kibungo and Rukira.", date: "1d", retweets: 21, likes: 56 },
+        { id: 103, user: "@NgomaDistrict", text: "Call for youth volunteers: Tree planting initiative along Kibungo-Zaza road. Register at sector office.", date: "2d", retweets: 44, likes: 112 },
+        { id: 104, user: "@NgomaDistrict", text: "We are expanding this community reporting tool to all 12 sectors. Scalable solution for citizen feedback.", date: "4d", retweets: 68, likes: 203 }
+    ];
+    
+    function renderFacebookFeed() {
+        const container = document.getElementById('facebookFeedContainer');
+        if(!container) return;
+        container.innerHTML = '';
+        fbPosts.forEach(post => {
+            const postDiv = document.createElement('div');
+            postDiv.className = 'social-post mb-3 p-3 rounded-3 shadow-sm';
+            postDiv.innerHTML = `
+                <div class="d-flex gap-2 align-items-center mb-2"><i class="bi bi-facebook text-primary"></i> <strong>Kibungo Sector Official</strong> <span class="small text-muted">${post.date}</span></div>
+                <p class="mb-2">${post.text}</p>
+                <div class="d-flex gap-3 small text-muted"><span><i class="bi bi-hand-thumbs-up"></i> ${post.likes}</span> <span><i class="bi bi-chat"></i> ${post.comments}</span> <span><i class="bi bi-share"></i> Share</span></div>
+            `;
+            container.appendChild(postDiv);
+        });
+    }
+    
+    function renderTwitterFeed() {
+        const container = document.getElementById('twitterFeedContainer');
+        if(!container) return;
+        container.innerHTML = '';
+        twitterPosts.forEach(tweet => {
+            const tweetDiv = document.createElement('div');
+            tweetDiv.className = 'social-post mb-3 p-3 rounded-3 shadow-sm';
+            tweetDiv.innerHTML = `
+                <div class="d-flex gap-2 align-items-center mb-2"><i class="bi bi-twitter-x text-info"></i> <strong>${tweet.user}</strong> <span class="small text-muted">· ${tweet.date}</span></div>
+                <p class="mb-2">${tweet.text}</p>
+                <div class="d-flex gap-3 small text-muted"><span><i class="bi bi-heart"></i> ${tweet.likes}</span> <span><i class="bi bi-repeat"></i> ${tweet.retweets}</span></div>
+            `;
+            container.appendChild(tweetDiv);
+        });
+    }
+    
+    function loadSocialFeeds() {
+        renderFacebookFeed();
+        renderTwitterFeed();
+    }
+    
+    document.getElementById('refreshFeedsBtn')?.addEventListener('click', () => {
+        loadSocialFeeds();
+        const toastMsg = document.createElement('div');
+        toastMsg.className = 'alert alert-success fixed-top m-3 w-auto end-0 start-auto';
+        toastMsg.style.position = 'fixed';
+        toastMsg.style.top = '70px';
+        toastMsg.style.right = '15px';
+        toastMsg.style.zIndex = '9999';
+        toastMsg.innerHTML = '🔄 Social feeds refreshed (simulated API data)';
+        document.body.appendChild(toastMsg);
+        setTimeout(() => toastMsg.remove(), 2000);
+    });
+    
+    // Initialize feeds after DOM
+    document.addEventListener('DOMContentLoaded', () => {
+        loadSocialFeeds();
+        // simulate scalability note: Github link placeholder
+        const fakeGithub = document.getElementById('fakeGithubLink');
+        if(fakeGithub) fakeGithub.href = "https://github.com/moisewandeke/Ndekezi_moise";
+    });
+    
+    // additional: Show that the demo works with local storage to retain dummy reports
+    window.updateCountersFromStorage = function(){} // optional
+</script>
+</body>
+</html>
